@@ -3,11 +3,12 @@
   Ag: 99999, Cc: 99999-9
 </p>
 <p>
-  Poupança: R${{getPoupanca}}
-  <input type="text" name="sacar" id="sacar" #sacar>
-  <button (click)="setSacar(sacar.value)">Sacar</button>
-</p><p>
-  Carteira: R${{getCarteira}}
-  <input type="text" name="depositar" id="depositar" #depositar>
-  <button (click)="setDepositar(depositar.value)">Depositar</button>
+  Poupança: R$ <span id="poupanca">{{getPoupanca}}</span>
+  <input id="sacarInput" type="text" name="sacar" #sacar>
+  <button id="sacarButton" (click)="setSacar(sacar.value)">Sacar</button>
+</p>
+<p>
+  Carteira: R$ <span id="carteira">{{getCarteira}}</span>
+  <input id="depositarInput" type="text" name="depositar" #depositar>
+  <button id="depositarButton" (click)="setDepositar(depositar.value)">Depositar</button>
 </p>

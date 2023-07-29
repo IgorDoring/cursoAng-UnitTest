@@ -54,4 +54,30 @@ describe('BankingComponent', () => {
     expect(component.getPoupanca).toEqual(10);
     expect(component.getCarteira).toEqual(50);
   });
+
+  it('(I) - setDepositar() deve transferir dinheiro da carteira para a poupanca', function () {
+    let el = fixture.debugElement.nativeElement;
+    el.querySelector("#depositarInput").value = 10;
+    el.querySelector("#depositarButton").click();
+    fixture.detectChanges();
+
+    expect(el.querySelector("#poupanca").textContent).toEqual('20');
+    expect(el.querySelector("#carteira").textContent).toEqual('40');
+
+    expect(component.getPoupanca).toEqual(20);
+    expect(component.getCarteira).toEqual(40);
+  });
+
+  it('(I) - setSacar() deve transferir dinheiro da poupanca para a carteira', function () {
+    let el = fixture.debugElement.nativeElement;
+    el.querySelector("#sacarInput").value = 10;
+    el.querySelector("#sacarButton").click();
+    fixture.detectChanges();
+
+    expect(el.querySelector("#poupanca").textContent).toEqual('0');
+    expect(el.querySelector("#carteira").textContent).toEqual('60');
+
+    expect(component.getPoupanca).toEqual(0);
+    expect(component.getCarteira).toEqual(60);
+  });
 });
