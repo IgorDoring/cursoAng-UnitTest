@@ -17,27 +17,41 @@ describe('BankingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('(U) - should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should poupanca start with 10 - banking.component', () => {
+  it('(U) - should poupanca start with 10 - banking.component', () => {
     expect(component.getPoupanca).toEqual(10);
   });
 
-  it('should carteira start with 50 - banking.component', () => {
+  it('(U) - should carteira start with 50 - banking.component', () => {
     expect(component.getCarteira).toEqual(50);
   });
 
-  it('setSacar() deve transferir dinheiro da poupanca para a carteira', function () {
+  it('(U) - setSacar() deve transferir dinheiro da poupanca para a carteira', function () {
     component.setSacar('10');
     expect(component.getPoupanca).toEqual(0);
     expect(component.getCarteira).toEqual(60);
   });
 
-  it('setDepositar() deve transferir dinheiro da carteira para a poupanca', function () {
+  it('(U) - setDepositar() deve transferir dinheiro da carteira para a poupanca', function () {
     component.setDepositar('50');
     expect(component.getPoupanca).toEqual(60);
     expect(component.getCarteira).toEqual(0);
+  });
+
+  it('(U) - setSacar() deve transferir valor se poupanca nao conter string e nao for menor que valor requisitado', function () {
+    expect(component.setSacar("string")).not.toBeTruthy();
+    expect(component.setSacar('100')).not.toBeTruthy();
+    expect(component.getPoupanca).toEqual(10);
+    expect(component.getCarteira).toEqual(50);
+  });
+
+  it('(U) - setDepositar() deve transferir valor se deposito nao conter string e nao for menor que valor requisitado', function () {
+    expect(component.setDepositar("string")).not.toBeTruthy();
+    expect(component.setDepositar('100')).not.toBeTruthy();
+    expect(component.getPoupanca).toEqual(10);
+    expect(component.getCarteira).toEqual(50);
   });
 });
